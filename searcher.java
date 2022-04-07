@@ -3,6 +3,10 @@ package mainFile;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+<<<<<<< HEAD
+import java.io.IOException;
+=======
+>>>>>>> feature
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,8 +30,15 @@ public class searcher {
 		
 	}
 	
+<<<<<<< .merge_file_a18128
 	public void InnerProduct(String query) throws Exception {
+=======
+	public void CalcSim2(String query) throws Exception {
+<<<<<<< HEAD
+=======
+>>>>>>> .merge_file_a12340
 //		query = scan.nextLine();
+>>>>>>> feature
 		HashMap queryMap = new HashMap();
 		KeywordExtractor ke = new KeywordExtractor();
 		KeywordList kl = ke.extractKeyword(query, true);
@@ -46,7 +57,10 @@ public class searcher {
 		
 		HashMap hashMap = (HashMap)object;		//index.post HashMap
 		HashMap indexMap = new HashMap();		//index.post HashMap 기반으로 한 가중치 HashMap
+<<<<<<< HEAD
+=======
 		Iterator<String> it = indexMap.keySet().iterator();
+>>>>>>> feature
 		
 		Set<String> keySet = queryMap.keySet();
 		for(String key : keySet) {
@@ -66,21 +80,73 @@ public class searcher {
 			}
 		}
 		
+<<<<<<< HEAD
+		double[] sim_array = Sim(queryMap, indexMap, array);
+		
+=======
+>>>>>>> feature
 		ArrayList<Integer> third_List = new ArrayList<Integer>();		//유사도 상위 3개 문서 id 배열
 		
 		while(third_List.size() < 3) {									//유사도 상위 3개 문서 id 배열에 저장
 			int flag = 0;
+<<<<<<< HEAD
+			for(int i =0; i<sim_array.length; i++) {
+				if((sim_array[flag] < sim_array[i]) && (third_List.contains(i) == false)) {
+					flag = i;
+				}
+			}
+			if(sim_array[flag] == 0) {
+=======
 			for(int i =0; i<array.length; i++) {
 				if((array[flag] < array[i]) && (third_List.contains(i) == false)) {
 					flag = i;
 				}
 			}
 			if(array[flag] == 0) {
+>>>>>>> feature
 				break;
 			}
 			third_List.add(flag);
 		}
 		
+<<<<<<< HEAD
+		String[] titleSt = titleName();
+		if(third_List.size() == 0) {
+			System.out.println("검색된 문서가 없습니다.");
+		}
+		else if(third_List.size() < 3) {
+			for(int i : third_List) {
+				System.out.println(titleSt[i]);
+			}
+		}
+		
+	}
+	
+	public double[] Sim(HashMap queryMap, HashMap indexMap, double[] id_array) {
+		Set<String> keySet = queryMap.keySet();
+		double[] sim_array = new double[5];
+		for(int i =0; i<5; i++) {
+			double query_weight = 0;
+			double index_weight = 0;
+			for(String key : keySet) {
+				ArrayList<String> list = (ArrayList)indexMap.get(key);
+				double indexNum = Double.parseDouble((String)list.get(i * 2 + 1));
+				int num = (int)queryMap.get(key);
+				query_weight += Math.pow((double) num, 2);
+				index_weight += Math.pow(indexNum, 2);
+			}
+			double son = ((Math.sqrt(query_weight) * Math.sqrt(index_weight)));
+			if(son <=0)
+				sim_array[i] = 0;
+			else
+				sim_array[i] = id_array[i] / son;
+		}
+		return sim_array;
+	}
+	
+	public String[] titleName() throws IOException{
+=======
+>>>>>>> feature
 		File input = new File(xml_path);
 		
 		Document docsIn = Jsoup.parse(input, "UTF-8", "", Parser.xmlParser());
@@ -95,6 +161,9 @@ public class searcher {
 			 titleSt[i] = title.text();
 		}
 		
+<<<<<<< HEAD
+		return titleSt;
+=======
 		if(third_List.size() == 0) {
 			System.out.println("검색된 문서가 없습니다.");
 		}
@@ -103,5 +172,6 @@ public class searcher {
 				System.out.println(titleSt[i]);
 			}
 		}
+>>>>>>> feature
 	}
 }
