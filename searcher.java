@@ -26,7 +26,7 @@ public class searcher {
 		
 	}
 	
-	public void CalcSim(String query) throws Exception {
+	public void InnerProduct(String query) throws Exception {
 //		query = scan.nextLine();
 		HashMap queryMap = new HashMap();
 		KeywordExtractor ke = new KeywordExtractor();
