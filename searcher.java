@@ -33,7 +33,7 @@ public class searcher {
 <<<<<<< .merge_file_a18128
 	public void InnerProduct(String query) throws Exception {
 =======
-	public void CalcSim2(String query) throws Exception {
+	public void CalcSim(String query) throws Exception {
 <<<<<<< HEAD
 =======
 >>>>>>> .merge_file_a12340
